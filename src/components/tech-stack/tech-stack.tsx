@@ -21,9 +21,9 @@ export default function TechStackMarquee() {
   return (
     <section className="relative w-full overflow-hidden py-20 lg:py-32 px-4 sm:px-6 lg:px-8">
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="absolute inset-0 -z-10 opacity-[0.08] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
-        <div className="absolute inset-0 -z-5 opacity-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:56px_56px]" />
-        {/* Hero Content */}
+        <div className="absolute inset-0 -z-10 opacity-[0.12] bg-[linear-gradient(to_right,rgba(255,120,180,0.25)_1px,transparent_1px),linear-gradient(to_bottom,rgba(120,180,255,0.25)_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div className="absolute inset-0 -z-5 opacity-[0.08] bg-[linear-gradient(to_right,rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:56px_56px]" />
+
         {/* Heading */}
         <div className="text-center font-serif mb-16 space-y-4">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">

@@ -5,6 +5,7 @@ import TechStack from "../tech-stack/tech-stack";
 import Products from "../product/product-page";
 import CustomerReviews from "../testimonials/testimonials";
 import Footer from "../layout/Footer/footer";
+import ContactPage from "@/services/contact-page/contact-page";
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       <TechStack />
       <Products />
       <CustomerReviews />
+      <ContactPage />
       <Footer />
     </div>
   );

@@ -13,7 +13,7 @@ export default function HeroWavebox() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden text-white">
+    <main className="relative min-h-screen xl:pt-0 lg:pt-20 pt-28 overflow-hidden text-white">
       {/* Animated Blur Blobs */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute -left-10 top-12 w-72 h-72 rounded-full blur-[120px] bg-linear-to-tr from-pink-500/30 via-yellow-300/10 to-transparent animate-float-slow opacity-90" />
@@ -24,6 +24,7 @@ export default function HeroWavebox() {
 
       <div className="absolute inset-0 -z-10 opacity-[0.08] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
       <div className="absolute inset-0 -z-5 opacity-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:56px_56px]" />
+
       {/* Hero Content */}
       <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 lg:px-8">
         <div className="mx-auto max-w-6xl text-center">
@@ -62,7 +63,7 @@ export default function HeroWavebox() {
             />
             <button
               type="submit"
-              className="absolute top-1/2 right-1.5 -translate-y-1/2 rounded-full bg-gradient-to-r from-yellow-400 to-pink-500 px-5 py-2 text-slate-900 font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-2 animate-pulse hover:animate-none"
+              className="absolute top-1/2 right-1.5 -translate-y-1/2 rounded-full bg-linear-to-r from-yellow-400 to-pink-500 px-5 py-2 text-slate-900 font-semibold shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-2 animate-pulse hover:animate-none"
             >
               Search <ArrowRight className="w-4 h-4" />
             </button>

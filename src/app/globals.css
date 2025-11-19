@@ -8,23 +8,8 @@ body {
   scroll-behavior: smooth;
   overscroll-behavior: none;
 
-  background: hsla(0, 0%, 31%, 1);
-  background: radial-gradient(
-    circle,
-    hsla(0, 0%, 31%, 1) 0%,
-    hsla(0, 0%, 6%, 1) 100%
-  );
-  background: -moz-radial-gradient(
-    circle,
-    hsla(0, 0%, 31%, 1) 0%,
-    hsla(0, 0%, 6%, 1) 100%
-  );
-  background: -webkit-radial-gradient(
-    circle,
-    hsla(0, 0%, 31%, 1) 0%,
-    hsla(0, 0%, 6%, 1) 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#505050", endColorstr="#0F0F0F", GradientType=1);
+  /* Dark professional gradient */
+  background: linear-gradient(135deg, #1f1f2e 0%, #0f0f17 100%);
 
   min-height: 100vh;
   color: white;
