@@ -60,22 +60,22 @@ export default function PricingSection() {
   );
 
   return (
-    <section className="relative text-white lg:pt-36 pt-10  overflow-hidden">
+    <section className="relative text-white lg:py-36 pt-10 overflow-hidden ">
       {/* Background grids */}
-      <div className="absolute inset-0 -z-10 opacity-[0.08] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
-      <div className="absolute inset-0 -z-5 opacity-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:56px_56px]" />
+      <div className="absolute inset-0 -z-20 opacity-[0.18] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
+      <div className="absolute inset-0 -z-25 opacity-5 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:56px_56px]" />
 
-      <div className="max-w-7xl mx-auto px-6 text-center">
+      <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
           Simple <span className="text-yellow-300">Pricing</span>
         </h2>
-        <p className="text-gray-300 mb-12 max-w-2xl mx-auto">
+        <p className="text-gray-400 mb-12 max-w-2xl mx-auto">
           Flexible plans for startups, growing teams, and enterprises. Choose a
           billing cycle that works best for you.
         </p>
 
         {/* Billing toggle */}
-        <div className="flex justify-center gap-3 mb-12 bg-gray-800/20 rounded-full p-1">
+        <div className="flex justify-center gap-3 mb-12 bg-gray-800/30 backdrop-blur-md rounded-full p-1">
           {[
             { label: "Monthly", value: "monthly" },
             { label: "Quarterly", value: "quarterly" },
@@ -86,8 +86,8 @@ export default function PricingSection() {
               onClick={() => setBilling(option.value as any)}
               className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
                 billing === option.value
-                  ? "bg-linear-to-r from-pink-500 to-orange-400 text-white shadow-lg"
-                  : "text-gray-300 hover:bg-gray-700"
+                  ? "bg-white/20 backdrop-blur-md text-white shadow-lg"
+                  : "text-gray-300 hover:bg-white/10 hover:backdrop-blur-sm"
               }`}
             >
               {option.label}
@@ -104,7 +104,7 @@ export default function PricingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2, type: "spring", stiffness: 80 }}
-              className="bg-gray-800/20 p-8 rounded-2xl border border-gray-700 shadow-xl flex flex-col justify-between hover:scale-105 transition-transform duration-300"
+              className="bg-gray-800/30 backdrop-blur-lg border border-gray-700 rounded-3xl p-8 shadow-2xl flex flex-col justify-between hover:scale-105 transition-transform duration-300"
             >
               <div>
                 <h3
@@ -136,7 +136,9 @@ export default function PricingSection() {
                   ))}
                 </ul>
               </div>
-              <button className="mt-auto bg-gradient-to-r from-pink-500 to-orange-400 text-white py-3 rounded-xl font-semibold hover:scale-105 transition-transform duration-300">
+
+              {/* Glassy button */}
+              <button className="mt-auto py-3 rounded-xl font-semibold text-white bg-black/40 backdrop-blur-md border border-white/20 hover:bg-white/10 hover:text-black transition-all duration-300">
                 Contact To Get Started
               </button>
             </motion.div>
