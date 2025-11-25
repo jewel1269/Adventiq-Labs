@@ -28,13 +28,13 @@ export default function TechStackMarquee() {
         <div className="text-center font-serif mb-16 space-y-4">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
             Yes! We cover your
-            <span className="block bg-gradient-to-r from-yellow-400 via-yellow-300 to-pink-400 bg-clip-text text-transparent">
+            <span className="block bg-linear-to-r from-cyan-400 via-cyan-300 to-pink-400 bg-clip-text text-transparent">
               entire tech stack.
             </span>
           </h2>
 
           <p className="text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto">
-            We work with 850+ modern technologies trusted by global brands.
+            We work with 50+ modern technologies trusted by global brands.
           </p>
         </div>
 
@@ -106,7 +106,7 @@ export default function TechStackMarquee() {
         </div>
 
         {/* Bottom Accent Line */}
-        <div className="mt-12 h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent" />
+        <div className="mt-12 h-px bg-linear-to-r from-transparent via-yellow-400/40 to-transparent" />
       </div>
     </section>
   );

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ColorTypography } from "@/components/Typography/color";
 
 const plans = [
   {
@@ -61,13 +62,14 @@ export default function PricingSection() {
 
   return (
     <section className="relative text-white lg:py-36 pt-10 overflow-hidden ">
+      <ColorTypography />
       {/* Background grids */}
       <div className="absolute inset-0 -z-20 opacity-[0.18] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
       <div className="absolute inset-0 -z-25 opacity-5 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:56px_56px]" />
 
       <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
-          Simple <span className="text-yellow-300">Pricing</span>
+          Simple <span className="text-cyan-400">Pricing</span>
         </h2>
         <p className="text-gray-400 mb-12 max-w-2xl mx-auto">
           Flexible plans for startups, growing teams, and enterprises. Choose a
@@ -138,7 +140,7 @@ export default function PricingSection() {
               </div>
 
               {/* Glassy button */}
-              <button className="mt-auto py-3 rounded-xl font-semibold text-white bg-black/40 backdrop-blur-md border border-white/20 hover:bg-white/10 hover:text-black transition-all duration-300">
+              <button className="mt-auto py-3 rounded-2xl font-semibold text-white bg-gray-900 backdrop-blur-md border border-white/5 hover:text-white/50  transition-all duration-300">
                 Contact To Get Started
               </button>
             </motion.div>

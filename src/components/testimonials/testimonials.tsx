@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import Image from "next/image";
+import { GridBox2 } from "../Typography/grid-box2";
 
 interface Review {
   id: number;
@@ -91,10 +92,7 @@ export default function CustomerReviews() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
-      <div className="absolute inset-0 -z-10 opacity-[0.12] bg-[linear-gradient(to_right,rgba(255,120,180,0.25)_1px,transparent_1px),linear-gradient(to_bottom,rgba(120,180,255,0.25)_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-      <div className="absolute inset-0 -z-5 opacity-[0.08] bg-[linear-gradient(to_right,rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:56px_56px]" />
-
+      <GridBox2 />
       {/* Background Glow */}
       <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px] animate-pulse"></div>
 

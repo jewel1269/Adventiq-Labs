@@ -110,7 +110,7 @@ export default function Navbar() {
               : "0 2px 10px rgba(0, 0, 0, 0)",
           }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="max-w-7xl mx-auto flex items-center justify-between px-6 py-1 rounded-2xl border border-gray-400/50 shadow-2xl shadow-black backdrop-blur-md relative z-50"
+          className="max-w-7xl mx-auto flex items-center justify-between px-6 py-1 rounded-2xl border border-gray-600/50 shadow-2xl shadow-black backdrop-blur-md relative z-50"
         >
           {/* Logo */}
           <motion.div
@@ -118,7 +118,7 @@ export default function Navbar() {
             className="flex items-center cursor-pointer"
           >
             <Image
-              src="https://i.ibb.co.com/B548wXKw/7f3d80c1-7e5e-47b6-ae3b-719b088c1472-removalai-preview.png"
+              src="https://i.ibb.co.com/23tBf54k/adventiq.png"
               alt="logo"
               height={300}
               width={250}
@@ -128,7 +128,7 @@ export default function Navbar() {
               href="/"
               className="text-2xl font-bold text-gray-100 transition-all hover:text-gray-300/50"
             >
-              Adventiq<span className="text-yellow-300">-Labs</span>
+              Adventiq<span className="text-cyan-400">-Labs</span>
             </Link>
           </motion.div>
 
@@ -221,9 +221,9 @@ export default function Navbar() {
               }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setScheduleOpen(true)}
-              className="relative bg-linear-to-r from-yellow-500 to-pink-500 text-white font-medium px-5 py-2 rounded-2xl shadow-md transition-all duration-300 hidden md:inline"
+              className="relative bg-linear-to-r from-indigo-500 to-cyan-400 text-white font-medium px-5 py-2 rounded-2xl shadow-md hover:shadow-cyan-400/40 transition-all duration-300 transform hover:scale-[1.03] animate-bounce-slow hover:animate-none hidden md:inline"
             >
-              <span className="relative z-10">Schedule a call</span>
+              <span className="relative z-10">Schedule a call </span>
             </motion.button>
 
             <motion.button

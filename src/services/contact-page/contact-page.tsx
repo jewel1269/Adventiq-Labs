@@ -10,7 +10,7 @@ export default function ContactPage() {
   return (
     <>
       <div className="min-h-screen  flex items-center justify-center p-4">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 p-8 md:p-12  rounded-3xl shadow-2xl  border-2 border-gray-800">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:p-8 p-4 rounded-3xl shadow-2xl  border-2 border-gray-800">
           <div className="flex flex-col justify-center items-start space-y-10 lg:pr-8">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
@@ -28,7 +28,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative bg-white/5 backdrop-blur-2x p-8 rounded-2xl shadow-xl border border-gray-600/50 transform hover:scale-[1.02] transition-transform duration-300"
+              className="relative bg-white/5 backdrop-blur-2x lg:p-8 p-4 rounded-2xl shadow-xl border border-gray-600/50 transform hover:scale-[1.02] transition-transform duration-300"
             >
               <div className="absolute -top-10 left-1/2 -translate-x-1/2">
                 <Image
@@ -58,7 +58,7 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setScheduleOpen(true)}
-                    className="flex items-center justify-center gap-3 px-6 py-3 bg-linear-to-r from-yellow-400 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:from-yellow-500 hover:to-pink-600 transition-all duration-300 text-lg"
+                    className="flex items-center justify-center gap-3 px-6 py-3 bg-linear-to-r from-cyan-400 to-cyan-600 text-white font-semibold rounded-full shadow-lg hover:from-cyan-500 hover:to-cyan-700 transition-all duration-300 text-lg"
                   >
                     <Phone size={20} /> Book a Call
                   </motion.button>
@@ -68,7 +68,7 @@ export default function ContactPage() {
           </div>
 
           {/* Right Section: Contact Form */}
-          <div className="bg-white/5 backdrop-blur-2x p-8 rounded-2xl shadow-xl border border-gray-600/50">
+          <div className="bg-white/5 backdrop-blur-2x lg:p-8 p-3 rounded-2xl shadow-xl border border-gray-600/50">
             <form className="space-y-6">
               {/* Name Input */}
               <motion.div
@@ -252,7 +252,7 @@ export default function ContactPage() {
                 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full px-8 py-4 bg-linear-to-r from-yellow-400 to-pink-500 text-white font-bold rounded-xl shadow-lg hover:from-yellow-500 hover:to-pink-600 transition-all duration-300 text-lg tracking-wide"
+                className="w-full px-8 py-3 bg-linear-to-r from-cyan-400 to-cyan-600 text-white font-bold rounded-3xl shadow-lg hover:from-cyan-500 hover:to-cyan-700 transition-all duration-300 text-lg tracking-wide"
               >
                 Submit
               </motion.button>

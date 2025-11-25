@@ -19,7 +19,7 @@ const Footer = () => {
               className="flex items-center cursor-pointer"
             >
               <Image
-                src="https://i.ibb.co.com/B548wXKw/7f3d80c1-7e5e-47b6-ae3b-719b088c1472-removalai-preview.png"
+                src="https://i.ibb.co.com/23tBf54k/adventiq.png"
                 alt="logo"
                 height={300}
                 width={250}

@@ -50,21 +50,32 @@ export function ScheduleCallDialog({
     "10:00 PM",
   ];
 
+  // --- Lenis / Global Scroll Fix (New Logic) ---
   useEffect(() => {
     if (open) {
+      // 1. Modal খোলা হলে global scroll লক করুন
+      document.body.style.overflow = "hidden";
+
+      // Reset state and start loading animation
       setStep(1);
       setIsLoading(true);
       const timer = setTimeout(() => setIsLoading(false), 900);
       return () => clearTimeout(timer);
     } else {
+      // 2. Modal বন্ধ হলে global scroll রিস্টোর করুন
+      document.body.style.overflow = "";
+
+      // Reset internal states upon closing
       setSelectedDate(undefined);
       setSelectedTime(undefined);
       setMeetingType(null);
       setIsLoading(true);
     }
   }, [open]);
+  // ---------------------------------------------
 
   const handleConfirm = () => {
+    // এখানে আপনার API কল বা শিডিউলিং লজিক থাকবে
     alert(
       `Meeting scheduled on ${format(selectedDate!, "PPP")} at ${selectedTime}`
     );
@@ -76,7 +87,7 @@ export function ScheduleCallDialog({
       <DialogContent
         className="
           w-[950px] max-w-none 
-          max-h-[80vh] overflow-y-auto
+          max-h-[80vh] overflow-y-auto // Modal-এর ভিতরের কন্টেন্ট স্ক্রল করার জন্য
           bg-gray-900/50 backdrop-blur-xl
           border border-gray-700 
           rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.5)]
@@ -98,7 +109,7 @@ export function ScheduleCallDialog({
             <div key={s} className="flex flex-col items-center w-full">
               <motion.div
                 animate={{
-                  backgroundColor: step >= s ? "#facc15" : "#374151",
+                  backgroundColor: step >= s ? "#facc15" : "#374151", // Tailwind yellow-400 vs gray-700
                   scale: step === s ? 1.2 : 1,
                 }}
                 className="h-10 w-10 rounded-full flex items-center justify-center text-black font-bold"
@@ -120,6 +131,7 @@ export function ScheduleCallDialog({
               key="loading"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               className="flex flex-col items-center justify-center py-20"
             >
               <Loader2 className="h-10 w-10 animate-spin text-yellow-400" />
@@ -277,7 +289,7 @@ export function ScheduleCallDialog({
 
                     <Button
                       onClick={handleConfirm}
-                      className="bg-linear-to-r from-yellow-400 to-pink-500 text-black px-8 py-5 rounded-xl font-semibold"
+                      className="bg-gradient-to-r from-yellow-400 to-amber-500 text-black px-8 py-5 rounded-xl font-semibold hover:opacity-90"
                     >
                       Confirm & Schedule
                     </Button>

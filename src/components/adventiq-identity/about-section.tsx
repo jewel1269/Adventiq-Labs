@@ -1,41 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Sphere, PerspectiveCamera } from "@react-three/drei";
-import * as THREE from "three";
 import { ArrowRight } from "lucide-react";
-
-function AnimatedSphere() {
-  const sphereRef = useRef<THREE.Mesh>(null);
-
-  useFrame(() => {
-    if (sphereRef.current) {
-      sphereRef.current.rotation.x += 0.0008;
-      sphereRef.current.rotation.y += 0.0012;
-    }
-  });
-
-  return (
-    <group>
-      {/* Core Sphere */}
-      <Sphere ref={sphereRef} args={[1.2, 64, 64]}>
-        <meshPhongMaterial color="#fef08a" emissive="#fde047" shininess={120} />
-      </Sphere>
-
-      {/* Soft Glow */}
-      <Sphere args={[1.35, 32, 32]}>
-        <meshBasicMaterial color="#fef08a" transparent opacity={0.15} />
-      </Sphere>
-
-      {/* Neon Ring */}
-      <mesh rotation={[Math.PI * 0.25, 0, 0]}>
-        <torusGeometry args={[1.6, 0.06, 16, 150]} />
-        <meshPhongMaterial color="#fb7185" emissive="#f472b6" />
-      </mesh>
-    </group>
-  );
-}
+import ReactPlayer from "react-player";
+import { GridBox1 } from "../Typography/grid-box1";
 
 export default function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -64,17 +32,16 @@ export default function AboutSection() {
       ref={containerRef}
       className="relative w-full overflow-hidden px-4 sm:px-6 lg:px-8 "
     >
-      <div className="absolute inset-0 -z-10 opacity-[0.08] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
-      <div className="absolute inset-0 -z-5 opacity-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:56px_56px]" />
+      <GridBox1 />
 
-      <div className="relative z-10 max-w-7xl mx-auto py-20">
+      <div className="relative z-10 max-w-7xl mx-auto py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* LEFT CONTENT */}
           <div className="space-y-6">
             {/* Badge */}
             <div className="scroll-animate opacity-0 translate-y-5 transition-all duration-700 delay-100 flex items-center gap-2">
-              <div className="h-2 w-2 rounded-full bg-yellow-300" />
-              <span className="text-sm text-yellow-300 uppercase tracking-wider">
+              <div className="h-2 w-2 rounded-full bg-cyan-400" />
+              <span className="text-sm text-cyan-400 uppercase tracking-wider font-medium">
                 About Adventiq Labs
               </span>
             </div>
@@ -82,30 +49,32 @@ export default function AboutSection() {
             {/* Heading */}
             <div className="scroll-animate opacity-0 translate-y-5 transition-all duration-700 delay-200">
               <h1 className="text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-                Innovating Tomorrow
+                Driving{" "}
+                <span className="text-cyan-400">Next-Gen Innovation</span>
               </h1>
               <p className="text-xl text-white/80 mt-4">
-                Transforming Ideas into Powerful Digital Solutions
+                Crafting intelligent software solutions that power global
+                businesses.
               </p>
             </div>
 
             {/* Description */}
             <p className="scroll-animate opacity-0 translate-y-5 transition-all duration-700 delay-300 text-lg text-white/90 leading-relaxed max-w-2xl">
-              At Adventiq Labs, we build modern, scalable and intelligent
-              software solutions that empower businesses globally. Our expert
-              engineers combine innovation with strategy to deliver impactful,
-              future-ready technology.
+              At Adventiq Labs, we combine strategy, creativity, and
+              cutting-edge technology to build scalable, impactful solutions.
+              Our global team of engineers brings innovation to life, shaping
+              the future of digital experiences.
             </p>
 
             {/* Key Points */}
             <div className="scroll-animate opacity-0 translate-y-5 transition-all duration-700 delay-400 space-y-3 py-4">
               {[
-                "Mission-driven innovation with measurable impact",
-                "Cutting-edge technologies built with best practices",
-                "Global engineering team focused on excellence",
+                "Innovation with measurable impact",
+                "Global engineering excellence",
+                "Cutting-edge technologies & best practices",
               ].map((text, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <div className="h-5 w-5 rounded-full bg-yellow-300 mt-1" />
+                  <div className="h-5 w-5 rounded-full bg-cyan-400 mt-1" />
                   <span className="text-white/90">{text}</span>
                 </div>
               ))}
@@ -113,7 +82,7 @@ export default function AboutSection() {
 
             {/* CTA Buttons */}
             <div className="scroll-animate opacity-0 translate-y-5 transition-all duration-700 delay-500 flex gap-4 pt-4">
-              <button className="group inline-flex items-center gap-2 px-8 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-yellow-300/40">
+              <button className="group inline-flex items-center gap-2 px-8 py-3 bg-cyan-400/20 hover:bg-cyan-400/30 backdrop-blur-md text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-400/40">
                 Get Started
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
               </button>
@@ -124,15 +93,20 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* RIGHT 3D SPHERE */}
-          <div className="scroll-animate opacity-0 translate-y-5 transition-all duration-700 delay-600 relative h-96 lg:h-[520px] rounded-3xl overflow-hidden shadow-2xl">
-            <Canvas>
-              <PerspectiveCamera makeDefault position={[0, 0, 3]} />
-              <ambientLight intensity={1} />
-              <pointLight position={[10, 10, 10]} intensity={2} />
-              <pointLight position={[-10, -10, 5]} intensity={1} />
-              <AnimatedSphere />
-            </Canvas>
+          {/* RIGHT VIDEO PLAYER - 3D Styled Card */}
+          <div className="scroll-animate opacity-0 translate-y-5 transition-all duration-700 delay-600 relative rounded-3xl shadow-gray-950 overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 bg-linear-to-br from-gray-800 via-gray-900 to-black border border-cyan-500/30">
+            <div className="relative aspect-video w-full">
+              <ReactPlayer
+                src="/video/about.mp4"
+                width="100%"
+                height="100%"
+                controls
+                light={false}
+                playing={false}
+                className="rounded-3xl"
+              />
+              <div className="absolute inset-0 pointer-events-none bg-linear-to-t from-black/40 to-transparent rounded-3xl"></div>
+            </div>
           </div>
         </div>
       </div>
