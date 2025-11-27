@@ -1,305 +1,416 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
-import {
-  Calendar as CalendarIcon,
-  Video,
-  ArrowRight,
-  ArrowLeft,
-  CheckCircle,
-  Loader2,
-} from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
 
-interface ScheduleCallDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+type Step = 1 | 2;
+
+interface FormData {
+  meetingType: string;
+  date?: Date;
+  time?: string;
+  name: string;
+  email: string;
+  phone: string;
+  description: string;
 }
 
-export function ScheduleCallDialog({
-  open,
-  onOpenChange,
-}: ScheduleCallDialogProps) {
+export function ScheduleCallWizard() {
+  const [currentStep, setCurrentStep] = useState<Step>(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    meetingType: "consultation",
+    name: "",
+    email: "",
+    phone: "",
+    description: "",
+  });
 
-  const [step, setStep] = useState<1 | 2 | 3>(1);
-
-  const [selectedDate, setSelectedDate] = useState<Date>();
-  const [selectedTime, setSelectedTime] = useState<string>();
-  const [meetingType, setMeetingType] = useState<"google-meet" | null>(null);
-
-  const timeSlots = [
-    "10:00 AM",
-    "11:00 AM",
-    "12:00 PM",
-    "02:00 PM",
-    "03:00 PM",
-    "07:00 PM",
-    "08:00 PM",
-    "09:00 PM",
-    "10:00 PM",
+  const meetingTypes = [
+    { id: "consultation", label: "Consultation" },
+    { id: "demo", label: "Product Demo" },
+    { id: "support", label: "Technical Support" },
   ];
 
-  // --- Lenis / Global Scroll Fix (New Logic) ---
+  const timeSlots = [
+    "09:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "02:00 PM",
+    "03:00 PM",
+    "04:00 PM",
+  ];
+
   useEffect(() => {
-    if (open) {
-      // 1. Modal খোলা হলে global scroll লক করুন
-      document.body.style.overflow = "hidden";
+    const timer = setTimeout(() => setIsLoading(false), 600);
+    return () => clearTimeout(timer);
+  }, []);
 
-      // Reset state and start loading animation
-      setStep(1);
-      setIsLoading(true);
-      const timer = setTimeout(() => setIsLoading(false), 900);
-      return () => clearTimeout(timer);
-    } else {
-      // 2. Modal বন্ধ হলে global scroll রিস্টোর করুন
-      document.body.style.overflow = "";
-
-      // Reset internal states upon closing
-      setSelectedDate(undefined);
-      setSelectedTime(undefined);
-      setMeetingType(null);
-      setIsLoading(true);
+  const handleNextStep = () => {
+    if (currentStep === 1 && formData.date && formData.time) {
+      setCurrentStep(2);
     }
-  }, [open]);
-  // ---------------------------------------------
-
-  const handleConfirm = () => {
-    // এখানে আপনার API কল বা শিডিউলিং লজিক থাকবে
-    alert(
-      `Meeting scheduled on ${format(selectedDate!, "PPP")} at ${selectedTime}`
-    );
-    onOpenChange(false);
   };
 
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent
-        className="
-          w-[950px] max-w-none 
-          max-h-[80vh] overflow-y-auto // Modal-এর ভিতরের কন্টেন্ট স্ক্রল করার জন্য
-          bg-gray-900/50 backdrop-blur-xl
-          border border-gray-700 
-          rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.5)]
-          p-10
-        "
-      >
-        <DialogHeader>
-          <DialogTitle className="text-3xl font-bold text-white flex items-center gap-3">
-            Schedule a Call
-          </DialogTitle>
-          <DialogDescription className="text-gray-400">
-            Follow the steps to schedule a session with us
-          </DialogDescription>
-        </DialogHeader>
+  const handlePrevStep = () => {
+    if (currentStep === 2) {
+      setCurrentStep(1);
+    }
+  };
 
-        {/* STEP INDICATOR */}
-        <div className="flex justify-between mt-6 mb-10">
-          {[1, 2, 3].map((s) => (
-            <div key={s} className="flex flex-col items-center w-full">
-              <motion.div
-                animate={{
-                  backgroundColor: step >= s ? "#facc15" : "#374151", // Tailwind yellow-400 vs gray-700
-                  scale: step === s ? 1.2 : 1,
-                }}
-                className="h-10 w-10 rounded-full flex items-center justify-center text-black font-bold"
-              >
-                {s}
-              </motion.div>
-              <div className="mt-2 text-gray-400 text-sm">
-                {s === 1 && "Meeting Type"}
-                {s === 2 && "Date & Time"}
-                {s === 3 && "Confirm"}
-              </div>
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    setIsSubmitting(false);
+    alert(`Meeting scheduled! Confirmation sent to ${formData.email}`);
+
+    setFormData({
+      meetingType: "consultation",
+      name: "",
+      email: "",
+      phone: "",
+      description: "",
+    });
+    setCurrentStep(1);
+  };
+
+  const isStep1Valid = formData.date && formData.time;
+  const isStep2Valid = formData.name.trim() && formData.email.trim();
+
+  return (
+    <div className="lg:py-32 py-24 bg-gray-900 text-white flex items-center justify-center p-4">
+      <div className="w-full max-w-4xl">
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex justify-between items-center mb-4">
+            <h1 className="text-2xl md:text-3xl font-bold text-white">
+              Schedule a Call
+            </h1>
+            <div className="text-sm font-medium text-gray-300">
+              Step {currentStep} of 2
             </div>
-          ))}
+          </div>
+
+          <div className="w-full bg-gray-700 rounded-full h-2">
+            <motion.div
+              className="bg-cyan-500 h-2 rounded-full"
+              initial={{ width: "0%" }}
+              animate={{ width: currentStep === 1 ? "50%" : "100%" }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
         </div>
 
-        <AnimatePresence mode="wait">
+        {/* Card */}
+        <motion.div
+          className="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden"
+          layout
+        >
           {isLoading ? (
-            <motion.div
-              key="loading"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="flex flex-col items-center justify-center py-20"
-            >
-              <Loader2 className="h-10 w-10 animate-spin text-yellow-400" />
-              <p className="text-gray-400 mt-3">Loading…</p>
-            </motion.div>
+            <div className="flex flex-col items-center justify-center py-20 px-6">
+              <Loader2 className="h-10 w-10 animate-spin text-cyan-500 mb-4" />
+              <p className="text-gray-300">Loading calendar...</p>
+            </div>
           ) : (
-            <motion.div
-              key={step}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* STEP 1 — Meeting Type */}
-              {step === 1 && (
-                <div className="space-y-8">
-                  <h3 className="text-xl font-semibold text-white">
-                    Choose Meeting Type
-                  </h3>
+            <AnimatePresence mode="wait">
+              {/* STEP 1 */}
+              {currentStep === 1 && (
+                <motion.div
+                  key="step1"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="p-6 md:p-8"
+                >
+                  <h2 className="text-lg font-semibold text-white mb-6">
+                    Choose Meeting Type, Date & Time
+                  </h2>
 
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setMeetingType("google-meet")}
-                    className={`
-                      p-6 rounded-2xl w-full border-2
-                      flex items-center gap-4 transition-all
-                      ${
-                        meetingType === "google-meet"
-                          ? "border-yellow-400 bg-yellow-400/10"
-                          : "border-gray-700 hover:border-yellow-400/40"
-                      }
-                    `}
-                  >
-                    <div className="h-12 w-12 rounded-full bg-yellow-400/10 flex items-center justify-center">
-                      <Video className="h-6 w-6 text-yellow-400" />
-                    </div>
-                    <div>
-                      <p className="text-white font-semibold">Google Meet</p>
-                      <p className="text-gray-400 text-sm">Video conference</p>
-                    </div>
-                  </motion.button>
+                  {/* Meeting Type */}
+                  <div className="mb-8">
+                    <label className="block text-sm font-medium text-gray-300 mb-3">
+                      Meeting Type
+                    </label>
 
-                  <div className="flex justify-end">
-                    <Button
-                      disabled={!meetingType}
-                      onClick={() => setStep(2)}
-                      className="bg-yellow-400 text-black px-8 py-5 rounded-xl font-semibold hover:opacity-90"
-                    >
-                      Next <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </div>
-                </div>
-              )}
-
-              {/* STEP 2 — Date & Time */}
-              {step === 2 && (
-                <div className="space-y-10">
-                  {/* Date */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-white flex items-center gap-2 mb-3">
-                      <CalendarIcon className="h-5 w-5" />
-                      Select Date
-                    </h3>
-                    <Calendar
-                      mode="single"
-                      selected={selectedDate}
-                      onSelect={setSelectedDate}
-                      disabled={(date) => date < new Date()}
-                      className="rounded-xl lg:w-[420px] border border-gray-700 bg-gray-800/50"
-                    />
-                  </div>
-
-                  {/* Time */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-3">
-                      Select Time
-                    </h3>
                     <div className="grid grid-cols-3 gap-3">
-                      {timeSlots.map((time) => (
+                      {meetingTypes.map((type) => (
                         <motion.button
-                          key={time}
-                          whileHover={{ scale: 1.03 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={() => setSelectedTime(time)}
-                          disabled={!selectedDate}
-                          className={`
-                            p-3 rounded-xl border transition-all text-white
-                            ${
-                              selectedTime === time
-                                ? "bg-yellow-400 text-black font-semibold border-yellow-400"
-                                : "border-gray-700 hover:border-yellow-400/50 hover:bg-yellow-400/10"
-                            }
-                            disabled:opacity-40 disabled:cursor-not-allowed
-                          `}
+                          key={type.id}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          onClick={() =>
+                            setFormData({ ...formData, meetingType: type.id })
+                          }
+                          className={`py-3 px-4 rounded-lg border-2 font-medium transition-all text-sm ${
+                            formData.meetingType === type.id
+                              ? "border-cyan-500 bg-cyan-900 text-cyan-100"
+                              : "border-gray-600 bg-gray-800 text-gray-300 hover:border-cyan-400"
+                          }`}
                         >
-                          {time}
+                          {type.label}
                         </motion.button>
                       ))}
                     </div>
                   </div>
 
-                  {/* Navigation */}
-                  <div className="flex justify-between">
-                    <Button
-                      onClick={() => setStep(1)}
-                      className="bg-gray-700 text-white px-6 py-5 rounded-xl"
-                    >
-                      <ArrowLeft className="w-4 h-4 mr-2" /> Back
-                    </Button>
+                  {/* Calendar */}
+                  <div className="mb-8">
+                    <label className="block text-sm font-medium text-gray-300 mb-3">
+                      Select Date
+                    </label>
 
-                    <Button
-                      disabled={!selectedDate || !selectedTime}
-                      onClick={() => setStep(3)}
-                      className="bg-yellow-400 text-black px-8 py-5 rounded-xl font-semibold hover:opacity-90"
-                    >
-                      Next <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
+                    <div className="bg-gray-800 lg:w-96 rounded-lg p-4 inline-block">
+                      <Calendar
+                        mode="single"
+                        selected={formData.date}
+                        onSelect={(date) => setFormData({ ...formData, date })}
+                        disabled={(date) =>
+                          date < new Date() ||
+                          date.getDay() === 0 ||
+                          date.getDay() === 6
+                        }
+                        className="rounded-lg w-full bg-gray-800 text-white"
+                      />
+                    </div>
+
+                    <p className="text-xs text-gray-400 mt-2">Weekdays only</p>
                   </div>
-                </div>
-              )}
 
-              {/* STEP 3 — Confirm */}
-              {step === 3 && (
-                <div className="space-y-10">
-                  <div className="bg-gray-800/60 p-6 rounded-2xl border border-gray-700">
-                    <h3 className="text-xl text-white font-semibold mb-4 flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-yellow-400" /> Review
-                      Details
+                  {/* Time Slots */}
+                  {formData.date && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      <label className="block text-sm font-medium text-gray-300 mb-3">
+                        Select Time
+                      </label>
+
+                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                        {timeSlots.map((time) => (
+                          <motion.button
+                            key={time}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => setFormData({ ...formData, time })}
+                            className={`py-2 px-3 rounded-lg border text-xs font-medium transition-all ${
+                              formData.time === time
+                                ? "border-cyan-500 bg-cyan-500 text-white"
+                                : "border-gray-600 text-gray-300 hover:border-cyan-400"
+                            }`}
+                          >
+                            {time}
+                          </motion.button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Summary */}
+                  <div className="mt-8 p-4 bg-gray-700 rounded-lg">
+                    <h3 className="text-sm font-semibold text-white mb-2">
+                      Summary
                     </h3>
-
-                    <div className="text-gray-300 space-y-3">
+                    <div className="text-sm text-gray-300 space-y-1">
                       <p>
-                        <strong className="text-white">Meeting Type:</strong>{" "}
-                        Google Meet
+                        Type:{" "}
+                        <span className="font-medium">
+                          {
+                            meetingTypes.find(
+                              (t) => t.id === formData.meetingType
+                            )?.label
+                          }
+                        </span>
                       </p>
                       <p>
-                        <strong className="text-white">Date:</strong>{" "}
-                        {selectedDate ? format(selectedDate, "PPP") : ""}
+                        Date:{" "}
+                        <span className="font-medium">
+                          {formData.date
+                            ? format(formData.date, "MMM d, yyyy")
+                            : "Not selected"}
+                        </span>
                       </p>
                       <p>
-                        <strong className="text-white">Time:</strong>{" "}
-                        {selectedTime}
+                        Time:{" "}
+                        <span className="font-medium">
+                          {formData.time || "Not selected"}
+                        </span>
                       </p>
                     </div>
                   </div>
-
-                  <div className="flex justify-between">
-                    <Button
-                      onClick={() => setStep(2)}
-                      className="bg-gray-700 text-white px-6 py-5 rounded-xl"
-                    >
-                      <ArrowLeft className="w-4 h-4 mr-2" /> Back
-                    </Button>
-
-                    <Button
-                      onClick={handleConfirm}
-                      className="bg-gradient-to-r from-yellow-400 to-amber-500 text-black px-8 py-5 rounded-xl font-semibold hover:opacity-90"
-                    >
-                      Confirm & Schedule
-                    </Button>
-                  </div>
-                </div>
+                </motion.div>
               )}
-            </motion.div>
+
+              {/* STEP 2 */}
+              {currentStep === 2 && (
+                <motion.div
+                  key="step2"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="p-6 md:p-8"
+                >
+                  <h2 className="text-lg font-semibold text-white mb-6">
+                    Your Information
+                  </h2>
+
+                  <div className="space-y-4 mb-8">
+                    {/* Name */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
+                        placeholder="Enter your full name"
+                        className="w-full px-4 py-2 rounded-lg border border-gray-600 bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Email *
+                      </label>
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
+                        placeholder="your.email@example.com"
+                        className="w-full px-4 py-2 rounded-lg border border-gray-600 bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                      />
+                    </div>
+
+                    {/* Phone */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) =>
+                          setFormData({ ...formData, phone: e.target.value })
+                        }
+                        placeholder="+1 (555) 000-0000"
+                        className="w-full px-4 py-2 rounded-lg border border-gray-600 bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                      />
+                    </div>
+
+                    {/* Description */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Additional Details
+                      </label>
+                      <textarea
+                        value={formData.description}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            description: e.target.value,
+                          })
+                        }
+                        placeholder="Tell us more about your inquiry..."
+                        rows={3}
+                        className="w-full px-4 py-2 rounded-lg border border-gray-600 bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 resize-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Summary */}
+                  <div className="p-4 bg-cyan-900 border border-cyan-800 rounded-lg mb-8">
+                    <h3 className="text-sm font-semibold text-cyan-100 mb-3">
+                      Booking Details
+                    </h3>
+                    <div className="text-sm text-cyan-200 space-y-1">
+                      <p>
+                        📅{" "}
+                        {formData.date
+                          ? format(formData.date, "EEEE, MMM d")
+                          : "N/A"}{" "}
+                        at {formData.time}
+                      </p>
+                      <p>
+                        🎯{" "}
+                        {
+                          meetingTypes.find(
+                            (t) => t.id === formData.meetingType
+                          )?.label
+                        }
+                      </p>
+                      <p>⏱️ 30 minutes</p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           )}
-        </AnimatePresence>
-      </DialogContent>
-    </Dialog>
+
+          {/* Footer Actions */}
+          {!isLoading && (
+            <div className="flex gap-3 p-6 md:p-8 border-t border-gray-700 bg-gray-800">
+              {currentStep === 2 && (
+                <Button
+                  onClick={handlePrevStep}
+                  variant="outline"
+                  className="flex-1 bg-gray-800 text-white border-gray-600"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back
+                </Button>
+              )}
+
+              {currentStep === 1 && (
+                <Button
+                  onClick={handleNextStep}
+                  disabled={!isStep1Valid}
+                  className="flex-1 ml-auto bg-cyan-500 hover:bg-cyan-600 text-white"
+                >
+                  Next
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              )}
+
+              {currentStep === 2 && (
+                <Button
+                  onClick={handleSubmit}
+                  disabled={!isStep2Valid || isSubmitting}
+                  className="flex-1 bg-cyan-500 hover:bg-cyan-600 text-white"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Confirming...
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                      Confirm Booking
+                    </>
+                  )}
+                </Button>
+              )}
+            </div>
+          )}
+        </motion.div>
+
+        <p className="text-center text-xs text-gray-400 mt-6">
+          You will receive a confirmation email and Google Meet link
+        </p>
+      </div>
+    </div>
   );
 }

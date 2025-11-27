@@ -8,16 +8,15 @@ import {
   Menu,
   X,
   ChevronDown,
-  Code, // For Custom Web Development
-  Smartphone, // For App Development
-  Bot, // For AI Agent Development
-  Feather, // For AI Content Creation
-  Globe, // For Wordpress Development
+  Code,
+  Smartphone,
+  Bot,
+  Feather,
+  Globe,
   LucideIcon,
 } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ScheduleCallDialog } from "@/services/ScheduleCallModal/ScheduleCallModal";
 
 // Interface for service item structure
 interface ServiceItem {
@@ -47,7 +46,6 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [desktopServicesOpen, setDesktopServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [scheduleOpen, setScheduleOpen] = useState(false);
   const pathname = usePathname();
 
   // Scroll animation
@@ -176,7 +174,7 @@ export default function Navbar() {
                               href={service.href}
                               onClick={() => setDesktopServicesOpen(false)}
                               // Item styling with icons and hover effects
-                              className="flex items-center gap-3 p-3 rounded-lg group transition-all duration-200  hover:bg-linear-to-r from-yellow-600/30 to-pink-600/30"
+                              className="flex items-center gap-3 p-3 rounded-lg group transition-all duration-200  hover:bg-gray-800"
                             >
                               {/* Render Icon */}
                               <div className="flex-shrink-0">
@@ -214,17 +212,18 @@ export default function Navbar() {
 
           {/* CTA Button + Mobile Menu Toggle (No change here) */}
           <div className="flex items-center justify-center gap-2">
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 0 25px rgba(236,72,153,0.4)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setScheduleOpen(true)}
-              className="relative bg-linear-to-r from-indigo-500 to-cyan-400 text-white font-medium px-5 py-2 rounded-2xl shadow-md hover:shadow-cyan-400/40 transition-all duration-300 transform hover:scale-[1.03] animate-bounce-slow hover:animate-none hidden md:inline"
-            >
-              <span className="relative z-10">Schedule a call </span>
-            </motion.button>
+            <Link href="/schedule">
+              <motion.button
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 0 25px rgba(236,72,153,0.4)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="relative bg-linear-to-r from-indigo-500 to-cyan-400 text-white font-medium px-5 py-2 rounded-2xl shadow-md hover:shadow-cyan-400/40 transition-all duration-300 transform hover:scale-[1.03] animate-bounce-slow hover:animate-none hidden md:inline"
+              >
+                <span className="relative z-10">Schedule a call </span>
+              </motion.button>
+            </Link>
 
             <motion.button
               whileTap={{ scale: 0.9 }}
@@ -311,28 +310,27 @@ export default function Navbar() {
                   );
                 })}
 
-                <motion.button
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0 0 20px rgba(236,72,153,0.5)",
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    setScheduleOpen(true);
-                    setMenuOpen(false);
-                  }}
-                  className="bg-linear-to-r from-blue-500 to-pink-500 text-white font-medium px-5 py-2 rounded-2xl shadow-md transition-all duration-300 mt-3"
-                >
-                  Schedule a call
-                </motion.button>
+                <Link href="/schedule">
+                  <motion.button
+                    whileHover={{
+                      scale: 1.05,
+                      boxShadow: "0 0 20px rgba(236,72,153,0.5)",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      setMenuOpen(false);
+                      setMobileServicesOpen(false);
+                    }}
+                    className="bg-linear-to-r from-blue-500 to-pink-500 text-white font-medium px-5 py-2 rounded-2xl shadow-md transition-all duration-300 mt-3"
+                  >
+                    Schedule a call
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </motion.nav>
-
-      {/* Schedule Modal */}
-      <ScheduleCallDialog open={scheduleOpen} onOpenChange={setScheduleOpen} />
     </>
   );
 }

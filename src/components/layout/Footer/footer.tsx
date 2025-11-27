@@ -30,7 +30,7 @@ const Footer = () => {
                 className="text-2xl font-bold text-gray-100 transition-all hover:text-gray-300/50"
               >
                 Adventiq
-                <span className="text-yellow-300">-Labs</span>
+                <span className="text-cyan-400">-Labs</span>
               </Link>
             </motion.div>
             <p className="text-sm mb-6 leading-relaxed">
@@ -73,14 +73,14 @@ const Footer = () => {
 
           {/* Products Column */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Products</h3>
+            <h3 className="text-white font-semibold mb-4">Services</h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href="#"
                   className="hover:text-footer-text-hover transition-colors"
                 >
-                  Platform Overview
+                  Custom Software Development
                 </a>
               </li>
               <li>
@@ -88,7 +88,7 @@ const Footer = () => {
                   href="#"
                   className="hover:text-footer-text-hover transition-colors"
                 >
-                  AI Solutions
+                  App Development
                 </a>
               </li>
               <li>
@@ -96,7 +96,7 @@ const Footer = () => {
                   href="#"
                   className="hover:text-footer-text-hover transition-colors"
                 >
-                  Cloud Services
+                  AI Agent Development
                 </a>
               </li>
               <li>
@@ -104,7 +104,7 @@ const Footer = () => {
                   href="#"
                   className="hover:text-footer-text-hover transition-colors"
                 >
-                  Analytics Tools
+                  AI Chatbot Development
                 </a>
               </li>
               <li>
@@ -112,7 +112,7 @@ const Footer = () => {
                   href="#"
                   className="hover:text-footer-text-hover transition-colors"
                 >
-                  API Integration
+                  WordPress Development
                 </a>
               </li>
             </ul>

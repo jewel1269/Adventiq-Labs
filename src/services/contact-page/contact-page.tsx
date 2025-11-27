@@ -2,11 +2,9 @@
 import Image from "next/image";
 import { ChevronDown, Mail, Phone, MessageSquare } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { ScheduleCallDialog } from "../ScheduleCallModal/ScheduleCallModal";
+import Link from "next/link";
 
 export default function ContactPage() {
-  const [scheduleOpen, setScheduleOpen] = useState(false);
   return (
     <>
       <div className="min-h-screen  flex items-center justify-center p-4">
@@ -54,14 +52,15 @@ export default function ContactPage() {
                   >
                     <MessageSquare size={20} /> Ask Questions
                   </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setScheduleOpen(true)}
-                    className="flex items-center justify-center gap-3 px-6 py-3 bg-linear-to-r from-cyan-400 to-cyan-600 text-white font-semibold rounded-full shadow-lg hover:from-cyan-500 hover:to-cyan-700 transition-all duration-300 text-lg"
-                  >
-                    <Phone size={20} /> Book a Call
-                  </motion.button>
+                  <Link href="/schedule">
+                    <motion.button
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="flex items-center justify-center gap-3 px-6 py-3 bg-linear-to-r from-cyan-400 to-cyan-600 text-white font-semibold rounded-full shadow-lg hover:from-cyan-500 hover:to-cyan-700 transition-all duration-300 text-lg"
+                    >
+                      <Phone size={20} /> Book a Call
+                    </motion.button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -260,7 +259,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-      <ScheduleCallDialog open={scheduleOpen} onOpenChange={setScheduleOpen} />
     </>
   );
 }

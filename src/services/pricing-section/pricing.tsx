@@ -8,8 +8,8 @@ const plans = [
   {
     title: "Startup",
     monthly: "$3,000",
-    quarterly: "$8,400",
-    onetime: "$30,000",
+    quarterly: "$5,400",
+    onetime: "$10,000",
     description: "Perfect for small teams",
     features: [
       "1 Senior Developer (Part Time)",
@@ -24,8 +24,8 @@ const plans = [
   {
     title: "Growth",
     monthly: "$5,000",
-    quarterly: "$14,000",
-    onetime: "$50,000",
+    quarterly: "$9,000",
+    onetime: "$15,000",
     description: "For growing companies",
     features: [
       "1 Senior Developer (Full Time)",
