@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, CheckCircle, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
+import axios from "axios";
 
 type Step = 1 | 2;
 
@@ -66,18 +67,20 @@ export function ScheduleCallWizard() {
   const handleSubmit = async () => {
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const res = await axios.post(
+        "https://n8n.srv1106977.hstgr.cloud/webhook/schedule",
+        formData
+      );
+
+      console.log(res.data);
+      alert(`Meeting scheduled! Confirmation sent to ${formData.email}`);
+    } catch (err) {
+      console.error(err);
+      alert("Webhook failed!");
+    }
 
     setIsSubmitting(false);
-    alert(`Meeting scheduled! Confirmation sent to ${formData.email}`);
-
-    setFormData({
-      meetingType: "consultation",
-      name: "",
-      email: "",
-      phone: "",
-      description: "",
-    });
     setCurrentStep(1);
   };
 
