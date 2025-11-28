@@ -219,7 +219,7 @@ export default function Navbar() {
                   boxShadow: "0 0 25px rgba(236,72,153,0.4)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative bg-linear-to-r from-indigo-500 to-cyan-400 text-white font-medium px-5 py-2 rounded-2xl shadow-md hover:shadow-cyan-400/40 transition-all duration-300 transform hover:scale-[1.03] animate-bounce-slow hover:animate-none hidden md:inline"
+                className="relative bg-cyan-700 text-white font-medium px-5 py-2 rounded-lg shadow-2xl shadow-black hover:shadow-cyan-400/40 transition-all duration-300 transform hover:scale-[1.03] animate-bounce-slow hover:animate-none hidden md:inline"
               >
                 <span className="relative z-10">Schedule a call </span>
               </motion.button>
@@ -321,7 +321,7 @@ export default function Navbar() {
                       setMenuOpen(false);
                       setMobileServicesOpen(false);
                     }}
-                    className="bg-linear-to-r from-blue-500 to-pink-500 text-white font-medium px-5 py-2 rounded-2xl shadow-md transition-all duration-300 mt-3"
+                    className="bg-cyan-700 text-white font-medium px-5 py-2 rounded-2xl shadow-md transition-all duration-300 mt-3"
                   >
                     Schedule a call
                   </motion.button>

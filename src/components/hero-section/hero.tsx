@@ -14,10 +14,10 @@ import { ColorTypography } from "../Typography/color";
 
 export default function HeroWavebox() {
   return (
-    <main className="relative min-h-screen xl:pt-0 lg:pt-20 pt-28 overflow-hidden text-white ">
+    <main className="relative min-h-screen 2xl:pt-0 xl:pt-28 lg:pt-20 pt-28 overflow-hidden text-white ">
       <ColorTypography />
       <div className="absolute inset-0 z-0 flex items-center backdrop:backdrop-blur-xl justify-center pointer-events-none opacity-40">
-        <div className="w-[1100px] lg:mt-20 h-[1100px]">
+        <div className="w-[1100px] xl:mt-68 2xl:mt-20 lg:mt-20 h-[1100px]">
           <Lottie animationData={animationData} loop autoplay />
         </div>
         <div className="absolute inset-0  bg-black/10"></div>

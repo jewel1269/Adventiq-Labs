@@ -98,13 +98,9 @@ function HeroSection() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-extrabold text-white mt-4"
+          className="text-5xl md:text-7xl font-serif font-extrabold text-white mt-4"
         >
-          Innovating{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
-            Digital
-          </span>{" "}
-          Excellence
+          Innovating <span className="text-cyan-500">Digital</span> Excellence
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -120,17 +116,15 @@ function HeroSection() {
   );
 }
 
-// Parallax Section Replacement for Performance
 function MissionStatement() {
   return (
     <div className="relative py-24 bg-gray-800/50 border-y border-gray-700">
-      {/* Image element is removed to avoid bg-fixed performance hit. Instead, we use the component below: */}
       <div className="absolute inset-0 overflow-hidden">
         <Image
           src="https://i.ibb.co.com/PGLtKbXp/images.jpg"
           alt="Technical Abstract Background"
           fill
-          className="object-cover scale-110 blur-sm opacity-10" // Subtle background image with low opacity
+          className="object-cover scale-110 blur-sm opacity-10"
         />
       </div>
       <div className="relative flex items-center justify-center">
@@ -165,7 +159,7 @@ export default function AboutPage() {
         >
           <h2 className="text-4xl font-extrabold text-cyan-400">Who We Are</h2>
           <p className="text-gray-300 leading-relaxed text-xl">
-            We are a collective of **elite innovators**, engineers, and product
+            We are a collective of elite innovators, engineers, and product
             designers dedicated to shaping the future through intelligent,
             modern technology. At Adventiq Labs, we transform complex challenges
             into powerful, intuitive digital solutions that drive **measurable
@@ -184,11 +178,11 @@ export default function AboutPage() {
           className="grid md:grid-cols-2 gap-12"
         >
           <motion.div className="bg-gray-800 p-12 rounded-3xl shadow-2xl border border-gray-700 hover:shadow-cyan-500/30 transition-all duration-300">
-            <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-green-400 mb-4">
-              Our Vision
+            <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-green-400 mb-4">
+              Envisioning Tomorrow
             </h3>
             <p className="text-gray-300 text-lg">
-              To be recognized globally as the **premier innovation partner**,
+              To be recognized globally as the premier innovation partner,
               evolving intelligent ideas into meaningful, industry-defining
               digital experiences that set new standards for performance and
               user-centricity.
@@ -196,22 +190,22 @@ export default function AboutPage() {
           </motion.div>
 
           <motion.div className="bg-gray-800 p-12 rounded-3xl shadow-2xl border border-gray-700 hover:shadow-purple-500/30 transition-all duration-300">
-            <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-4">
-              Our Mission
+            <h3 className="text-3xl font-bold text-gray-300 mb-4">
+              Our Purpose & Commitment
             </h3>
             <ul className="text-gray-300 list-none space-y-4 text-lg">
               <li className="flex items-start">
                 <span className="text-cyan-400 mr-3 text-2xl">•</span> Build
-                intelligent, **scalable digital products** with engineering
+                intelligent, scalable digital products with engineering
                 precision.
               </li>
               <li className="flex items-start">
                 <span className="text-cyan-400 mr-3 text-2xl">•</span> Simplify
-                complex problems through **elegant, performant solutions**.
+                complex problems through elegant, performant solutions.
               </li>
               <li className="flex items-start">
                 <span className="text-cyan-400 mr-3 text-2xl">•</span> Empower
-                businesses with **advanced AI, automation, and data strategy**.
+                businesses with advanced AI, automation, and data strategy.
               </li>
             </ul>
           </motion.div>

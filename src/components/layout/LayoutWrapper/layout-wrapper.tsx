@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Navbar from "../navbar/main-navbar";
+import Footer from "../Footer/footer";
 
 export default function LayoutWrapper({
   children,
@@ -18,7 +19,7 @@ export default function LayoutWrapper({
     <div className="flex flex-col min-h-screen">
       {!isHidden && <Navbar />}
       <main className="flex-1">{children}</main>
-      {/* {!isHidden && <Footer />} */}
+      <Footer/>
     </div>
   );
 }

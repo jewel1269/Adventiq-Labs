@@ -21,7 +21,6 @@ const HomePage = () => {
       <CustomerReviews />
       <ContactPage />
       <FAQ />
-      <Footer />
     </div>
   );
 };
