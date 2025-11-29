@@ -1,23 +1,15 @@
 "use client";
 import Lottie from "lottie-react";
-import {
-  ArrowRight,
-  Code,
-  Globe,
-  Gauge,
-  Users,
-  Layers3,
-  Search,
-} from "lucide-react";
+import { Code, Globe, Gauge, Users, Layers3, Search } from "lucide-react";
 import animationData from ".././../../public/animations/circle.json";
 import { ColorTypography } from "../Typography/color";
 
 export default function HeroWavebox() {
   return (
-    <main className="relative min-h-screen 2xl:pt-0 xl:pt-28 lg:pt-20 pt-28 overflow-hidden text-white ">
+    <main className="relative min-h-screen 3xl:pt-28 2xl:pt-0 xl:pt-28 lg:pt-20 pt-28 overflow-hidden text-white ">
       <ColorTypography />
       <div className="absolute inset-0 z-0 flex items-center backdrop:backdrop-blur-xl justify-center pointer-events-none opacity-40">
-        <div className="w-[1100px] xl:mt-68 2xl:mt-20 lg:mt-20 h-[1100px]">
+        <div className="2xl:w-[1100px] xl:w-[1000px] xl:mt-64 2xl:mt-20 lg:mt-20 2xl:h-[1100px]">
           <Lottie animationData={animationData} loop autoplay />
         </div>
         <div className="absolute inset-0  bg-black/10"></div>
@@ -55,67 +47,6 @@ export default function HeroWavebox() {
           </div>
         </div>
       </section>
-      <style jsx>{`
-        /* ... existing keyframes ... */
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-8px);
-          }
-        }
-        @keyframes float-reverse {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(10px);
-          }
-        }
-        @keyframes float-slow {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-18px) translateX(6px);
-          }
-        }
-        @keyframes pulse-slow {
-          0%,
-          100% {
-            opacity: 0.6;
-          }
-          50% {
-            opacity: 1;
-          }
-        }
-
-        .animate-float {
-          animation: float 3.5s ease-in-out infinite;
-        }
-        .animate-float-reverse {
-          animation: float-reverse 5s ease-in-out infinite;
-        }
-        .animate-float-slow {
-          animation: float-slow 7s ease-in-out infinite;
-        }
-        .animate-pulse-slow {
-          animation: pulse-slow 6s ease-in-out infinite;
-        }
-        .animate-bounce-slow {
-          animation: float 3s ease-in-out infinite;
-        }
-
-        @media (min-width: 1024px) {
-          h1 {
-            font-size: 4.25rem;
-          }
-        }
-      `}</style>
     </main>
   );
 }
@@ -134,7 +65,7 @@ function StatCard() {
           </div>
         </div>
         <div className="text-right">
-          <div className="text-xl font-bold text-indigo-400">10M+</div>
+          <div className="text-xl font-bold text-indigo-400">2M+</div>
           <div className="text-xs text-slate-400">Lines of Code Deployed</div>
         </div>
       </div>
@@ -178,7 +109,7 @@ function ChartCard() {
         </div>
         <div className="w-24 text-center">
           <Globe className="w-6 h-6 mx-auto text-indigo-400" />
-          <div className="text-xl font-bold mt-1 text-white">15+</div>
+          <div className="text-xl font-bold mt-1 text-white">5+</div>
           <div className="text-xs text-slate-400">Global Markets Served</div>
         </div>
       </div>

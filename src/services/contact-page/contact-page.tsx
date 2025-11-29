@@ -45,18 +45,14 @@ export default function ContactPage() {
                   Got an idea? Let is chat on WhatsApp or jump on a quick call.
                 </p>
                 <div className="mt-8 flex flex-col space-y-4">
-                  <motion.button
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex items-center justify-center gap-3 px-6 py-3  text-white font-semibold rounded-full shadow-lg border backdrop-blur-2xl border-white/30 transition-all duration-300 text-lg"
+                  <Link
+                    href="/schedule"
+                    className="flex items-center justify-center"
                   >
-                    <MessageSquare size={20} /> Ask Questions
-                  </motion.button>
-                  <Link href="/schedule">
                     <motion.button
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.98 }}
-                      className="flex items-center justify-center gap-3 px-6 py-3 bg-linear-to-r from-cyan-400 to-cyan-600 text-white font-semibold rounded-full shadow-lg hover:from-cyan-500 hover:to-cyan-700 transition-all duration-300 text-lg"
+                      className="flex items-center justify-center gap-3 px-20 py-3 bg-linear-to-r from-cyan-400 to-cyan-600 text-white font-semibold rounded-full shadow-lg hover:from-cyan-500 hover:to-cyan-700 transition-all duration-300 text-lg"
                     >
                       <Phone size={20} /> Book a Call
                     </motion.button>
@@ -158,17 +154,20 @@ export default function ContactPage() {
                     <option value="" disabled hidden>
                       Select a service
                     </option>
-                    <option value="genai" className="bg-gray-900 text-gray-50">
-                      Gen AI
-                    </option>
                     <option value="webdev" className="bg-gray-900 text-gray-50">
                       Web Development
                     </option>
                     <option value="appdev" className="bg-gray-900 text-gray-50">
                       App Development
                     </option>
-                    <option value="seo" className="bg-gray-900 text-gray-50">
-                      SEO
+                    <option value="agent" className="bg-gray-900 text-gray-50">
+                      Ai Agent Development
+                    </option>
+                    <option
+                      value="wordpress"
+                      className="bg-gray-900 text-gray-50"
+                    >
+                      Wordpress Development
                     </option>
                   </select>
                   <label
@@ -196,6 +195,9 @@ export default function ContactPage() {
                   >
                     <option value="" disabled hidden>
                       Select a budget
+                    </option>
+                    <option value="1-5k" className="bg-gray-900 text-gray-50">
+                      $500-$1k
                     </option>
                     <option value="1-5k" className="bg-gray-900 text-gray-50">
                       $1K-$5K

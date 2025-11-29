@@ -25,7 +25,7 @@ export function ScheduleCallWizard() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<FormData>({
-    meetingType: "consultation",
+    meetingType: "Website",
     name: "",
     email: "",
     phone: "",
@@ -33,9 +33,9 @@ export function ScheduleCallWizard() {
   });
 
   const meetingTypes = [
-    { id: "consultation", label: "Consultation" },
-    { id: "demo", label: "Product Demo" },
-    { id: "support", label: "Technical Support" },
+    { id: "Website", label: "Website" },
+    { id: "App building", label: "App building" },
+    { id: "AI Agent", label: "AI Agent" },
   ];
 
   const timeSlots = [
@@ -139,7 +139,7 @@ export function ScheduleCallWizard() {
                   {/* Meeting Type */}
                   <div className="mb-8">
                     <label className="block text-sm font-medium text-gray-300 mb-3">
-                      Meeting Type
+                      Service Type
                     </label>
 
                     <div className="grid grid-cols-3 gap-3">

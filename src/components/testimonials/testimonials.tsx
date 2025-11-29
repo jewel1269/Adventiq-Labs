@@ -22,25 +22,27 @@ const reviews: Review[] = [
     rating: 5,
     date: "August 20, 2024",
     avatar: "https://i.ibb.co.com/Qj3bJMKw/image.png",
-    text: "Outstanding service and exceptional quality. The team went above and beyond to ensure everything was perfect. Their attention to detail and commitment to excellence is truly remarkable.",
+    text: "Outstanding service and exceptional quality. The team went beyond expectations and delivered a smooth, high-performing web experience. Truly impressed with their professionalism and dedication.",
   },
+
   {
     id: 2,
-    name: "Edward Alexander",
-    role: "VP of Engineering",
+    name: "মাহিন রহমান",
+    role: "ই-কমার্স উদ্যোক্তা",
     rating: 5,
-    date: "August 29, 2024",
-    avatar: "https://i.ibb.co.com/24c54bz/image.png",
-    text: "They have awesome customer service. I wouldn't recommend going to anyone else. All of you guys are awesome. Definitely love the way everything works seamlessly together.",
+    date: "January 12, 2025",
+    avatar: "https://i.postimg.cc/VNZM9828/image.png",
+    text: "ওয়েবসাইটটি পাওয়ার পর আমার ব্যবসার বিক্রি দ্বিগুণ বেড়েছে। খুব দ্রুত, সুন্দর ও প্রফেশনাল একটি সাইট বানিয়ে দিয়েছে। সব কিছুই একদম পারফেক্টভাবে ডেলিভার হয়েছে।",
   },
+
   {
     id: 3,
-    name: "Diana Johnston",
-    role: "Chief Marketing Officer",
+    name: "সাদিয়া ইসলাম",
+    role: "ডিজিটাল মার্কেটিং এক্সপার্ট",
     rating: 5,
-    date: "September 15, 2024",
-    avatar: "https://i.ibb.co.com/rGtxQ7K9/image.png",
-    text: "Excellent experience from start to finish. The attention to detail and professionalism is unmatched in this industry. They truly understand what clients need.",
+    date: "February 02, 2025",
+    avatar: "https://i.postimg.cc/DyQXjsRD/image.png",
+    text: "ওদের ডিজাইন এবং ইউআই/ইউএক্স সেন্স অসাধারণ। আমার ক্লায়েন্টদের জন্য কয়েকটি ওয়েবসাইট তৈরি করিয়েছি—প্রতিটাই দ্রুত, মোবাইল-ফ্রেন্ডলি এবং কনভার্শন ফোকাসড। সত্যি বলতে, ফুল স্যাটিসফাইড!",
   },
 ];
 
@@ -91,7 +93,7 @@ export default function CustomerReviews() {
   const currentReview = reviews[currentIndex];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 py-15 overflow-hidden">
       <GridBox2 />
       {/* Background Glow */}
       <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px] animate-pulse"></div>
@@ -160,33 +162,29 @@ export default function CustomerReviews() {
           </div>
 
           {/* Right Side – Review Card */}
+          {/* Right Side – Review Card */}
           <div className="flex-1 order-1 lg:order-2 w-full">
             <div className="relative">
               <div
-                className={`relative bg-white/5 backdrop-blur-2xl rounded-3xl p-10 lg:p-14 border border-white/10 shadow-2xl transition-all duration-500 ${
+                className={`relative bg-white/5 backdrop-blur-xl rounded-2xl p-6 lg:p-10 border border-white/10 shadow-xl transition-all duration-500 ${
                   isAnimating
                     ? direction === "next"
-                      ? "opacity-0 translate-x-10 rotate-y-12"
-                      : "opacity-0 -translate-x-10 -rotate-y-12"
-                    : "opacity-100 translate-x-0 rotate-y-0"
+                      ? "opacity-0 translate-x-6"
+                      : "opacity-0 -translate-x-6"
+                    : "opacity-100 translate-x-0"
                 }`}
-                style={{
-                  transform: "translateZ(40px)",
-                  boxShadow:
-                    "0 25px 50px -12px rgba(0,0,0,0.5), 0 0 60px rgba(52,211,153,0.15)",
-                }}
               >
-                {/* Icon */}
-                <Quote className="w-16 h-16 text-primary/30 mb-8" />
+                {/* Quote Icon */}
+                <Quote className="w-10 h-10 text-white/50 mb-4" />
 
-                {/* Text */}
-                <p className="text-xl lg:text-2xl text-white/90 leading-relaxed font-light mb-10">
+                {/* Review Text */}
+                <p className="text-base lg:text-lg text-white/80 leading-relaxed font-light mb-6">
                   {currentReview.text}
                 </p>
 
                 {/* Profile */}
-                <div className="flex items-center gap-5">
-                  <div className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-primary/30 shadow-lg">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full overflow-hidden ring-1 ring-primary/20 shadow-md">
                     <Image
                       src={currentReview.avatar}
                       alt={currentReview.name}
@@ -197,22 +195,19 @@ export default function CustomerReviews() {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold text-white">
+                    <h3 className="text-base font-semibold text-white">
                       {currentReview.name}
                     </h3>
-                    <p className="text-muted-foreground text-sm">
-                      {currentReview.role}
-                    </p>
 
-                    <div className="flex items-center gap-2 mt-1">
+                    <div className="flex items-center  gap-1 mt-1">
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          size={16}
-                          className="text-primary fill-primary"
+                          size={14}
+                          className="text-yellow-500 fill-primary"
                         />
                       ))}
-                      <span className="text-xs text-white/50 ml-2">
+                      <span className="text-[10px] text-white/40 ml-1">
                         {currentReview.date}
                       </span>
                     </div>
@@ -220,17 +215,17 @@ export default function CustomerReviews() {
                 </div>
 
                 {/* Bottom Navigation */}
-                <div className="flex items-center gap-4 mt-10 pt-8 border-t border-white/10">
+                <div className="flex items-center gap-3 mt-6 pt-5 border-t border-white/10">
                   {/* Prev */}
                   <button
                     onClick={handlePrev}
-                    className="group w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-primary/20 border border-white/10 hover:border-primary/40 transition-all duration-300 hover:scale-110"
+                    className="group w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-primary/20 border border-white/10 hover:border-primary/40 transition-all duration-300"
                   >
-                    <ChevronLeft className="w-5 h-5 text-white/50 group-hover:text-primary" />
+                    <ChevronLeft className="w-4 h-4 text-white/50 group-hover:text-primary" />
                   </button>
 
                   {/* Progress Bars */}
-                  <div className="flex-1 flex gap-2">
+                  <div className="flex-1 flex gap-1.5">
                     {reviews.map((_, index) => (
                       <button
                         key={index}
@@ -250,15 +245,12 @@ export default function CustomerReviews() {
                   {/* Next */}
                   <button
                     onClick={handleNext}
-                    className="group w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-primary/20 border border-white/10 hover:border-primary/40 transition-all duration-300 hover:scale-110"
+                    className="group w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-primary/20 border border-white/10 hover:border-primary/40 transition-all duration-300"
                   >
-                    <ChevronRight className="w-5 h-5 text-white/50 group-hover:text-primary" />
+                    <ChevronRight className="w-4 h-4 text-white/50 group-hover:text-primary" />
                   </button>
                 </div>
               </div>
-
-              {/* Soft Glow */}
-              <div className="absolute inset-0 bg-primary/10 blur-2xl rounded-3xl -z-10"></div>
             </div>
           </div>
         </div>

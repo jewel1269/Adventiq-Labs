@@ -1,11 +1,9 @@
-
-import About from "@/services/about-page/about";
-import React from "react";
+import DemoProject from "@/services/demo-project/demo";
 
 const AboutPage = () => {
   return (
     <div>
-      <About />
+      <DemoProject />
     </div>
   );
 };

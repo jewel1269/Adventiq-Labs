@@ -7,9 +7,9 @@ import { ColorTypography } from "@/components/Typography/color";
 const plans = [
   {
     title: "Startup",
-    monthly: "$3,000",
-    quarterly: "$5,400",
-    onetime: "$10,000",
+    monthly: 3000,
+    quarterly: 5400,
+    onetime: 10000,
     description: "Perfect for small teams",
     features: [
       "1 Senior Developer (Part Time)",
@@ -23,9 +23,9 @@ const plans = [
   },
   {
     title: "Growth",
-    monthly: "$5,000",
-    quarterly: "$9,000",
-    onetime: "$15,000",
+    monthly: 5000,
+    quarterly: 9000,
+    onetime: 15000,
     description: "For growing companies",
     features: [
       "1 Senior Developer (Full Time)",
@@ -39,9 +39,9 @@ const plans = [
   },
   {
     title: "Enterprise",
-    monthly: "Custom",
-    quarterly: "Custom",
-    onetime: "Custom",
+    monthly: 0,
+    quarterly: 0,
+    onetime: 0,
     description: "Custom solutions for large teams",
     features: [
       "Custom Development Team",
@@ -59,6 +59,17 @@ export default function PricingSection() {
   const [billing, setBilling] = useState<"monthly" | "quarterly" | "onetime">(
     "monthly"
   );
+  const [currency, setCurrency] = useState<"USD" | "BDT">("USD");
+
+  // Example conversion rate (1 USD = 110 BDT)
+  const conversionRate = 110;
+
+  const formatPrice = (price: number | string) => {
+    if (price === "Custom" || price === 0) return "Custom";
+    return currency === "USD"
+      ? `$${price.toLocaleString()}`
+      : `৳${((price as number) * conversionRate).toLocaleString()}`;
+  };
 
   return (
     <section className="relative text-white lg:py-36 pt-10 overflow-hidden ">
@@ -71,10 +82,27 @@ export default function PricingSection() {
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
           Simple <span className="text-cyan-400">Pricing</span>
         </h2>
-        <p className="text-gray-400 mb-12 max-w-2xl mx-auto">
+        <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
           Flexible plans for startups, growing teams, and enterprises. Choose a
-          billing cycle that works best for you.
+          billing cycle and currency that works best for you.
         </p>
+
+        {/* Currency toggle */}
+        <div className="flex justify-center gap-3 mb-6">
+          {["USD", "BDT"].map((cur) => (
+            <button
+              key={cur}
+              onClick={() => setCurrency(cur as "USD" | "BDT")}
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                currency === cur
+                  ? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/50"
+                  : "border border-gray-700 text-gray-300 hover:border-cyan-400 hover:text-cyan-400"
+              }`}
+            >
+              {cur}
+            </button>
+          ))}
+        </div>
 
         {/* Billing toggle */}
         <div className="flex justify-center gap-3 mb-12 bg-gray-800/30 backdrop-blur-md rounded-full p-1">
@@ -117,10 +145,10 @@ export default function PricingSection() {
                 <p className="text-gray-300 mb-6">{plan.description}</p>
                 <p className="text-3xl md:text-4xl font-extrabold mb-6">
                   {billing === "monthly"
-                    ? plan.monthly
+                    ? formatPrice(plan.monthly)
                     : billing === "quarterly"
-                    ? plan.quarterly
-                    : plan.onetime}{" "}
+                    ? formatPrice(plan.quarterly)
+                    : formatPrice(plan.onetime)}{" "}
                   <span className="text-gray-400 text-base">
                     {billing === "monthly"
                       ? "/ month"

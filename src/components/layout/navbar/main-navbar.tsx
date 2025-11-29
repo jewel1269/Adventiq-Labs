@@ -14,17 +14,14 @@ import {
   Feather,
   Globe,
   LucideIcon,
+  LayoutGrid,
+  Server,
+  Megaphone,
+  ShoppingCart,
 } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-
-// Interface for service item structure
-interface ServiceItem {
-  name: string;
-  href: string;
-  icon: string;
-  color: string;
-}
+import { servicesList } from "./nav-services";
 
 const getIconComponent = (iconName: string, colorClass: string) => {
   const IconComponent: LucideIcon = {
@@ -33,12 +30,15 @@ const getIconComponent = (iconName: string, colorClass: string) => {
     Bot: Bot,
     Feather: Feather,
     Globe: Globe,
-    // Add more icons here if needed
+    LayoutGrid: LayoutGrid,
+    Server: Server,
+    Megaphone: Megaphone,
+    ShoppingCart: ShoppingCart,
   }[iconName] as LucideIcon;
 
-  if (!IconComponent) return <Code size={20} className={colorClass} />; // Default
+  if (!IconComponent) return <Code size={20} className={colorClass} />;
 
-  return <IconComponent size={20} className={colorClass} />;
+  return <IconComponent size={28} className={colorClass} />;
 };
 
 export default function Navbar() {
@@ -48,46 +48,13 @@ export default function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const pathname = usePathname();
 
-  // Scroll animation
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuItems = ["product", "services", "pricing", "about", "career"];
-  const servicesList: ServiceItem[] = [
-    {
-      name: "Custom Web Development",
-      href: "/services/custom-web-development",
-      icon: "Code",
-      color: "text-blue-400",
-    },
-    {
-      name: "App Development",
-      href: "/services/app-development",
-      icon: "Smartphone",
-      color: "text-purple-400",
-    },
-    {
-      name: "AI Agent Development",
-      href: "/services/ai-agent-development",
-      icon: "Bot",
-      color: "text-green-400",
-    },
-    {
-      name: "AI Content Creation",
-      href: "/services/ai-content-creation",
-      icon: "Feather",
-      color: "text-red-400",
-    },
-    {
-      name: "Wordpress Development",
-      href: "/services/wordpress-development",
-      icon: "Globe",
-      color: "text-yellow-400",
-    },
-  ];
+  const menuItems = ["product", "services", "demo", "pricing", "career"];
 
   const isActive = (path: string) =>
     pathname === `/${path}` || pathname === `#${path}`;
@@ -157,7 +124,7 @@ export default function Navbar() {
                       />
                     </button>
 
-                    {/* Dropdown - MODERNIZED STYLING */}
+                    {/* Dropdown - NEW STYLING FOR DESKTOP (2x2 Grid) */}
                     <AnimatePresence>
                       {desktopServicesOpen && (
                         <motion.div
@@ -165,24 +132,42 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute top-full mt-2 w-96  bg-gray-900/95 backdrop-blur-xl
-          border border-gray-700  rounded-xl  shadow-2xl p-2 flex flex-col gap-1 z-[60]"
+                          // **UPDATED STYLING:** Wide for 2-column grid, adjusted background/shadow
+                          className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[600px] bg-white rounded-2xl shadow-2xl shadow-black/30 p-4 grid grid-cols-2 gap-4 z-50 border border-gray-100"
                         >
                           {servicesList.map((service) => (
                             <Link
                               key={service.name}
                               href={service.href}
                               onClick={() => setDesktopServicesOpen(false)}
-                              // Item styling with icons and hover effects
-                              className="flex items-center gap-3 p-3 rounded-lg group transition-all duration-200  hover:bg-gray-800"
+                              // **UPDATED STYLING:** Card layout
+                              className="flex items-start gap-4 p-4 rounded-xl transition-all duration-200 hover:bg-gray-50/70 border border-gray-100 group"
                             >
-                              {/* Render Icon */}
-                              <div className="flex-shrink-0">
-                                {getIconComponent(service.icon, service.color)}
+                              {/* Icon Container with background color */}
+                              <div
+                                className={`flex-shrink-0 p-2 rounded-lg ${
+                                  service.color === "text-blue-400"
+                                    ? "bg-blue-100"
+                                    : service.color === "text-purple-400"
+                                    ? "bg-purple-100"
+                                    : service.color === "text-green-400"
+                                    ? "bg-green-100"
+                                    : "bg-red-100"
+                                }`}
+                              >
+                                {getIconComponent(
+                                  service.icon,
+                                  `w-5 h-5 ${service.color}`
+                                )}
                               </div>
                               <div className="flex flex-col text-left">
-                                <span className="text-gray-100 font-semibold text-sm group-hover:text-white transition-colors">
+                                {/* Service Name (Bold title) */}
+                                <span className="text-gray-900 font-extrabold text-md group-hover:text-gray-800">
                                   {service.name}
+                                </span>
+                                {/* Service Description (Subtitle) */}
+                                <span className="text-gray-500 text-sm mt-0.5">
+                                  {service.description}
                                 </span>
                               </div>
                             </Link>
@@ -238,7 +223,7 @@ export default function Navbar() {
           </div>
         </motion.div>
 
-        {/* Mobile Menu - Updated to include icons and better styling */}
+        {/* Mobile Menu - The mobile dropdown remains list-style but uses the new servicesList */}
         <AnimatePresence>
           {menuOpen && (
             <motion.div

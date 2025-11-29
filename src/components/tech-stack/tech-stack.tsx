@@ -9,6 +9,7 @@ const technologies = [
   "React",
   "Next.js",
   "React Native",
+  "Flutter",
   "iOS",
   "Android",
   "Node.js",

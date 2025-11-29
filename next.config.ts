@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["i.ibb.co.com", "fse.jegtheme.com"],
+    domains: ["i.ibb.co.com", "fse.jegtheme.com", "ibb.co.com", "i.postimg.cc"],
   },
   reactCompiler: true,
 };
