@@ -97,7 +97,7 @@ export default function AboutSection() {
           <div className="scroll-animate opacity-0 translate-y-5 transition-all duration-700 delay-600 relative rounded-3xl shadow-gray-950 overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500 bg-linear-to-br from-gray-800 via-gray-900 to-black border border-cyan-500/30">
             <div className="relative aspect-video w-full">
               <ReactPlayer
-                src="/video/about.mp4"
+                src="/video/Promotional_video.mp4"
                 width="100%"
                 height="100%"
                 controls

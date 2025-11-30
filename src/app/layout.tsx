@@ -24,8 +24,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Aventiq Labs | Software Solutions",
-  description: "Aventiq Labs is a global software company",
+  title: "Adventiq Labs | Software Solutions",
+  description: "Adventiq Labs is a global software company",
 };
 
 export default function RootLayout({

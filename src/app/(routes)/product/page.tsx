@@ -1,6 +1,7 @@
 "use client";
 import Products from "@/components/product/product-page";
 import ContactPage from "@/services/contact-page/contact-page";
+
 import { usePathname } from "next/navigation";
 
 const ProductPage = () => {
