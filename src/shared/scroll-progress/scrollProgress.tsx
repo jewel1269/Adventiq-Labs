@@ -46,7 +46,7 @@ export default function ScrollProgress() {
           d="M18 2a16 16 0 1 1 0 32 16 16 0 1 1 0-32"
         />
         <path
-          className="text-yellow-400"
+          className="text-cyan-500"
           stroke="currentColor"
           strokeWidth="3"
           fill="none"

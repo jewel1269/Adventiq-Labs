@@ -4,21 +4,23 @@ import { Code, Globe, Gauge, Users, Layers3, Search } from "lucide-react";
 import animationData from ".././../../public/animations/circle.json";
 import { ColorTypography } from "../Typography/color";
 
+
 export default function HeroWavebox() {
   return (
-    <main className="relative min-h-screen 3xl:pt-28 2xl:pt-0 xl:pt-28 lg:pt-20 pt-28 overflow-hidden text-white ">
+    <main className="relative min-h-screen  pt-28 lg:pt-0 xl:pt-10  overflow-hidden text-white ">
       <ColorTypography />
       <div className="absolute inset-0 z-0 flex items-center backdrop:backdrop-blur-xl justify-center pointer-events-none opacity-40">
         <div className="2xl:w-[1100px] xl:w-[1000px] xl:mt-64 2xl:mt-20 lg:mt-20 2xl:h-[1100px]">
-          <Lottie animationData={animationData} loop autoplay />
+          <Lottie animationData={animationData} loop autoplay className="lg:mt-0 mt-10" />
         </div>
         <div className="absolute inset-0  bg-black/10"></div>
       </div>
 
+
       <div className="absolute inset-0 -z-10 opacity-[0.08] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
       <div className="absolute inset-0 -z-5 opacity-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:56px_56px]" />
 
-      <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 lg:px-8">
+      <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-6xl text-center">
           <h1 className="mb-6 text-3xl leading-tight sm:text-4xl md:text-6xl font-extrabold tracking-tight">
             Innovating <span className="text-cyan-400">Intelligent</span>{" "}
@@ -47,6 +49,7 @@ export default function HeroWavebox() {
           </div>
         </div>
       </section>
+
     </main>
   );
 }

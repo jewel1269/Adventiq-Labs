@@ -33,18 +33,20 @@ export function ScheduleCallWizard() {
   });
 
   const meetingTypes = [
-    { id: "Website", label: "Website" },
+    { id: "Website", label: "Website buiid" },
     { id: "App building", label: "App building" },
-    { id: "AI Agent", label: "AI Agent" },
+    { id: "AI Agent", label: "AI Agent Build" },
   ];
 
   const timeSlots = [
-    "09:00 AM",
     "10:00 AM",
     "11:00 AM",
-    "02:00 PM",
     "03:00 PM",
     "04:00 PM",
+    "07:00 PM",
+    "08:00 PM",
+    "09:00 PM",
+    "10:00 PM",
   ];
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React from "react";
+"use client"
 import { MoveUpRight } from "lucide-react";
 import { getIconComponent } from "../web-development/IconMapper";
 import FeatureCard from "../web-development/FeatureCard";
@@ -14,6 +14,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ColorTypography } from "@/components/Typography/color";
 import { GridBox2 } from "@/components/Typography/grid-box2";
+import Lottie from "lottie-react";
+import app from "../../../public/animations/appd.json"
+
 
 const AppDevelopmentPage = () => {
   return (
@@ -50,13 +53,13 @@ const AppDevelopmentPage = () => {
               </div>
             </div>
             <div className="relative h-64 md:h-full min-h-[300px]  rounded-xl  flex items-center justify-center p-6">
-              <Image
-                src="https://i.postimg.cc/26WsmH7T/341683-PAC0U8-584.png"
-                alt="web"
-                fill
-                className="object-cover rounded-xl"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              <Lottie
+  animationData={app}
+  loop
+  autoplay
+  className="absolute inset-0 -z-10 lg:w-[600px] lg:h-[600px] lg:-mt-24 w-full h-full"
+/>
+
             </div>
           </div>
         </section>

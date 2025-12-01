@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import FeatureCard from "./FeatureCard";
 import CapabilityCard from "./CapabilityCard";
@@ -13,6 +14,8 @@ import { getIconComponent } from "./IconMapper";
 import Image from "next/image";
 import { ColorTypography } from "@/components/Typography/color";
 import { GridBox2 } from "@/components/Typography/grid-box2";
+import web from "../../../public/animations/webd.json"
+import Lottie from "lottie-react";
 
 const WebDevelopmentPage: React.FC = () => {
   return (
@@ -46,13 +49,13 @@ const WebDevelopmentPage: React.FC = () => {
             </div>
 
             <div className="relative h-64 md:h-full min-h-[300px]  rounded-xl  flex items-center justify-center p-6">
-              <Image
-                src="https://i.postimg.cc/q71fjhMx/image7.png"
-                alt="web"
-                fill
-                className="object-cover rounded-xl"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              <Lottie
+  animationData={web}
+  loop
+  autoplay
+  className="absolute inset-0 -z-10 lg:w-[600px] lg:h-[600px] lg:-mt-24 w-full h-full"
+/>
+
             </div>
           </div>
         </section>

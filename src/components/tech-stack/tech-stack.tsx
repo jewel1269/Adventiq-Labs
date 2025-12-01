@@ -16,6 +16,8 @@ const technologies = [
   "Express.js",
   "Fastify",
   "Nest.js",
+  "N8N",
+  "Zapier",
 ];
 
 export default function TechStackMarquee() {

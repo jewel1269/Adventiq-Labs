@@ -1,7 +1,9 @@
-import React from "react";
+"use client"
 import { AI_HERO_FEATURES } from "./data";
 import { getIconComponent } from "@/services/web-development/IconMapper";
 import Image from "next/image";
+import Lottie from "lottie-react";
+import ai from "../../../public/animations/aid.json"
 
 const HeroSection = () => (
   <section className="py-12 md:py-20">
@@ -28,15 +30,15 @@ const HeroSection = () => (
           })}
         </div>
       </div>
-      <div className="relative h-64 md:h-full min-h-[300px] bg-gray-800 rounded-xl border border-gray-700/50 flex items-center justify-center p-6">
-        <Image
-          src="https://i.postimg.cc/bJPTD3hy/image.png"
-          alt="web"
-          fill
-          className="object-cover rounded-xl"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
-      </div>
+       <div className="relative h-64 md:h-full min-h-[300px]  rounded-xl  flex items-center justify-center p-6">
+              <Lottie
+  animationData={ai}
+  loop
+  autoplay
+  className="absolute inset-0 -z-10 lg:w-[600px] lg:h-[600px] lg:-mt-24 w-full h-full"
+/>
+
+            </div>
     </div>
   </section>
 );
