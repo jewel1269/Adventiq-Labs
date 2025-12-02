@@ -1,28 +1,7 @@
 "use client";
 
+import { products } from "@/utils/product/product";
 import { ProductCard } from "./product-card";
-
-const products = [
-  {
-    id: 1,
-    name: "Resto Pilot",
-    subtitle: "Restaurant Management Syatem (SaaS)",
-    description:
-      "An AI-powered photo-editing platform that helps user leverage quality photos without using any camera.",
-    features: ["AI", "Image Pro", "Image to Image"],
-    image: "https://i.ibb.co.com/hR6XZr8W/image.png",
-  },
-  {
-    id: 2,
-    name: "Programming Fighter",
-    subtitle: "Learning Management System (SaaS)",
-    description:
-      "A real-time AI voice speaking practice platform that uses LLMs, OpenAI RTT technology to help you speak English.",
-    features: ["LLM", "OpenAI", "RTT", "AI"],
-    image:
-      "https://i.ibb.co.com/XfrP0jms/Screenshot-from-2025-11-18-12-26-55.png",
-  },
-];
 
 export default function Products() {
   return (

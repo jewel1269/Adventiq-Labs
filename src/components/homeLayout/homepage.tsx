@@ -8,6 +8,7 @@ import Footer from "../layout/Footer/footer";
 import ContactPage from "@/services/contact-page/contact-page";
 import FAQ from "../faq/faq";
 import TrustedPartners from "@/services/partners/partners";
+import { IndustryExpertiseSection } from "@/services/industry-experties/insdustry-experties";
 
 const HomePage = () => {
   return (
@@ -18,6 +19,7 @@ const HomePage = () => {
       <TechStack />
       <Products />
       <TrustedPartners />
+      <IndustryExpertiseSection />
       <CustomerReviews />
       <ContactPage />
       <FAQ />

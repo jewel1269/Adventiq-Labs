@@ -72,8 +72,28 @@ export const PROJECTS = [
     title: "Travelling Voice Agent",
     category: "AI Agent",
     thumbnail: "https://i.postimg.cc/brNs42QP/image.png",
-    previewType: "app" as const,
+    previewType: "image" as const,
     previewImage: "https://i.postimg.cc/brNs42QP/image.png",
+    description:
+      "Mobile app for managing multiple social media accounts efficiently.",
+  },
+  {
+    id: 9,
+    title: "Ecommerce App (R. Native)",
+    category: "App",
+    thumbnail: "/demo/ecom2.jpg",
+    previewType: "image" as const,
+    previewImage: "/demo/ecom2.jpg",
+    description:
+      "Mobile app for managing multiple social media accounts efficiently.",
+  },
+  {
+    id: 10,
+    title: "Ecommerce App (Flutter)",
+    category: "App",
+    thumbnail: "/demo/ecom.jpg",
+    previewType: "image" as const,
+    previewImage: "/demo/ecom.jpg",
     description:
       "Mobile app for managing multiple social media accounts efficiently.",
   },

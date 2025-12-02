@@ -1,6 +1,6 @@
 "use client";
 
-import { Bot, Workflow, PenTool, Code } from "lucide-react";
+import { Bot, Workflow, PenTool, Code, Globe } from "lucide-react";
 import Link from "next/link";
 
 const services = [
@@ -64,6 +64,21 @@ const services = [
       "Performance tuning",
       "Website security enhancement",
       "E-commerce solutions",
+    ],
+  },
+  {
+    title: "Domain & Hosting",
+    icon: Globe,
+    link: "/services/domain-hosting",
+    gradient: "from-green-400/30 to-emerald-500/30",
+    iconColor: "text-green-300",
+    points: [
+      "Domain registration & management",
+      "Reliable web hosting",
+      "SSL certificates & HTTPS",
+      "Server setup & maintenance",
+      "High uptime & performance",
+      "Scalable cloud hosting solutions",
     ],
   },
 ];

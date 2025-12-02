@@ -93,7 +93,7 @@ export default function CustomerReviews() {
   const currentReview = reviews[currentIndex];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 py-15 overflow-hidden">
+    <section className="relative  flex items-center justify-center px-4 lg:py-10  overflow-hidden">
       <GridBox2 />
       {/* Background Glow */}
       <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px] animate-pulse"></div>
@@ -108,7 +108,7 @@ export default function CustomerReviews() {
             </span>
           </div>
 
-          <h2 className="text-5xl md:text-6xl font-bold font-serif tracking-tight">
+          <h2 className="text-5xl md:text-6xl text-white/80 font-bold font-serif tracking-tight">
             Our Valuable Clients
           </h2>
 
